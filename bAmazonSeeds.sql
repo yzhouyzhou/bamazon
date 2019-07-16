@@ -13,10 +13,17 @@ CREATE TABLE products(
   PRIMARY KEY (item_id)
 );
 
+CREATE TABLE departments (
+    department_id INT NOT NULL AUTO_INCREMENT,
+    department_name VARCHAR(100) NULL,
+    over_head_costs DECIMAL(10,2) default 0,
+    PRIMARY KEY (department_id)
+);
+
 INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES 
 ("microwave","kitchen", 59.99, 5), 
 ("ricecooker","kitchen", 259.99, 5), 
-("blender","kitchen", 49.88, 5),
+("blender","kitchen", 49.88, 3),
 ("coffeemaker","kitchen", 24.99, 5),  
 ("breadmaker","kitchen", 97.99, 5), 
 ("darkchocolate","food", 5.99, 50), 
@@ -25,4 +32,7 @@ INSERT INTO products (product_name, department_name, price, stock_quantity) VALU
 ("wholecashews","food", 10.79, 20), 
 ("mixednuts","food", 10.79, 20); 
 
-
+INSERT INTO departments (department_name, over_head_costs) VALUES 
+("kitchen", "10000"),
+("food", "10000"),
+("cloth", "10000");
