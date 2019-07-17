@@ -34,5 +34,4 @@ INSERT INTO products (product_name, department_name, price, stock_quantity) VALU
 
 INSERT INTO departments (department_name, over_head_costs) VALUES 
 ("kitchen", "10000"),
-("food", "10000"),
-("cloth", "10000");
+("food", "10000");

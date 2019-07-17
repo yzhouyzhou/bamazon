@@ -1,6 +1,8 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var cTable = require("console.table");
+var summary = [];
+var chargedInTotal = 0.0;
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -20,17 +22,11 @@ function shopping() {
     connection.query("SELECT item_id, product_name, department_name, price, stock_quantity, product_sales FROM PRODUCTS",
         function (err, results) {
             if (err) throw err;
-            console.log("\n");
             console.table(results);
             customInput();
         });
-
 }
 
-function exit() {
-    console.log("Thank you for shopping with us! Have A Nice Day!");
-    connection.end();
-}
 
 function customInput() {
     let itemId = 0;
@@ -71,7 +67,7 @@ function customInput() {
         }
         itemId = answer.itemIdOrQuit;
         numToBuy = answer.numToBuyOrQuit;
-        console.log(itemId, numToBuy);
+        // console.log(itemId, numToBuy);
         connection.query(
             "SELECT product_name, price, stock_quantity, product_sales FROM PRODUCTS where ?",
             {
@@ -94,7 +90,11 @@ function customInput() {
                             }
                         ], function (err) {
                             if (err) throw err;
-                            console.log("You order is filled: ", numToBuy, response[0].product_name, "and total charged $ ", response[0].price * numToBuy);
+
+                            var summaryStr = numToBuy + " " + response[0].product_name + "  $ " + (response[0].price * numToBuy).toFixed(2);
+                            console.log("You order is filled: ", summaryStr);
+                            summary.push(summaryStr);
+                            chargedInTotal += parseFloat((response[0].price * numToBuy).toFixed(2));
                         }
                     )
                 }
@@ -104,4 +104,9 @@ function customInput() {
     });
 }
 
-
+function exit() {
+    console.log("Your Purchase Summary: \nTotal in charged : $ ", chargedInTotal);
+    summary.forEach(item => { console.log(item); });
+    console.log("Thank you for shopping with us! Have A Nice Day!");
+    connection.end();
+}
