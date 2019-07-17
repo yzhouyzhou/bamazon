@@ -18,14 +18,14 @@ bamazon
 *   Manager View: a list of menu options allow to mainteance the store
     *   view product for sale
     *   view low inventory less than 5
-    *   add more to inventory
-![managerOut1](images/managerOutput_1.JPG)
+    *   add more to inventory   
+    ![managerOut1](images/managerOutput_1.JPG)
     *   add new product
-    *   exit
-![managerOut2](images/managerOutput_2.JPG)
+    *   Exit
+    ![managerOut2](images/managerOutput_2.JPG)
 
 *   Supervisor View: add a new table called departments which contain columns: department_id, department_name and over_head_costs
     *   view product sales by department: join departments and products tables to get results
     *   Add new department
     *   Exit
-![supervisorOutput](images/supervisorOutput.JPG)
+    ![supervisorOutput](images/supervisorOutput.JPG)
